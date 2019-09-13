@@ -1,0 +1,13 @@
+.tab {
+  float: left;
+  text-align: center;
+  border-bottom: 2px solid #fff;
+  cursor: pointer;
+  padding: 0 .8%;
+  display: list-item;
+}
+
+.tab :hover{
+  color:#f26722;
+}
+
