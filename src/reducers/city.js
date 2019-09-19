@@ -1,33 +1,43 @@
-export const SET_CITY_ID = 'SET_CITY_ID';
 export const FETCH_CITIES = 'FETCH_CITIES';
-export const CLEAR_CITY_STATE = 'CLEAR_CITY_STATE';
 export const SET_CITIES = 'SET_CITIES';
+export const VALIDATE_SEARCH_DETAILS = 'VALIDATE_SEARCH_DETAILS';
+export const SET_ERROR = 'SET_ERROR';
+export const RESET_ERROR_MESSAGE = 'RESET_ERROR_MESSAGE';
 
 const initialState = {
   selectedCityId: '',
-  cityList: [],
+  list: [],
+  errorMessage: '',
 };
 
 export default (state = initialState, action) => {
   const { type } = action;
   switch (type) {
-    case SET_CITY_ID: {
-      const selectedCityId = action.data;
+    case RESET_ERROR_MESSAGE: {
+      const errorMessage = '';
       return {
-        ...state, selectedCityId,
+        ...state, errorMessage,
       };
-    }
-    case CLEAR_CITY_STATE: {
-      return { ...initialState };
     }
     case FETCH_CITIES: {
       return { ...state };
     }
     case SET_CITIES: {
-      const cityList = action.cities;
+      const list = action.data;
       return {
-        ...state, cityList: cityList
-      }
+        ...state, list,
+      };
+    }
+    case VALIDATE_SEARCH_DETAILS: {
+      return {
+        ...state,
+      };
+    }
+    case SET_ERROR: {
+      const errorMessage = action.data;
+      return {
+        ...state, errorMessage,
+      };
     }
     default:
       return state;
