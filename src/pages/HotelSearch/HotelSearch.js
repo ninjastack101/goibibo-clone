@@ -1,9 +1,9 @@
 import React from 'react';
-import Navbar from '../../components/Navbar/Navbar'
-import HotelForm from '../../components/HotelForm/HotelForm'
+import Navbar from '../../components/Navbar/Navbar';
+import HotelForm from '../../components/HotelForm/HotelForm';
 
 const HotelSearch = () => (
-  <div className="bus">
+  <div>
     <Navbar />
     <HotelForm />
   </div>
