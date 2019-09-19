@@ -1,24 +1,37 @@
 import React from 'react';
 import Select from 'react-select';
+import PropTypes from 'prop-types';
+import './AutoCompleteSearch.scss';
 
-export class AutoCompleteSearch extends React.Component {
-  state = {
-    selectedOption: null,
-  };
+export default function AutoCompleteSearch(props) {
+  const {
+    selectedOption,
+    handleChange,
+    handleInputChange,
+    filteredOptions,
+  } = props;
 
-  handleChange = selectedOption => {
-    this.setState({ selectedOption });
-    console.log(`Option selected:`, selectedOption);
-  };
-  render() {
-    const { selectedOption } = this.state;
-
-    return (
+  return (
+    <div>
       <Select
+        className="city-search-input"
         value={selectedOption}
-        onChange={this.handleChange}
-        options={this.props.options}
+        options={filteredOptions}
+        onChange={(option) => handleChange(option)}
+        onInputChange={(input) => handleInputChange(input)}
       />
-    );
-  }
+    </div>
+  );
 }
+
+AutoCompleteSearch.propTypes = {
+  handleChange: PropTypes.func,
+  handleInputChange: PropTypes.func,
+  filteredOptions: PropTypes.arrayOf(PropTypes.shape).isRequired,
+  selectedOption: PropTypes.string.isRequired,
+};
+
+AutoCompleteSearch.defaultProps = {
+  handleChange: function handleChange() {},
+  handleInputChange: function handleInputChange() {},
+};
