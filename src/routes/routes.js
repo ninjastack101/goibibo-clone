@@ -1,13 +1,20 @@
 import React from 'react';
-import { Route, BrowserRouter as Router, Switch } from 'react-router-dom';
+import {
+  Route, Switch, withRouter,
+} from 'react-router-dom';
+import { ConnectedRouter } from 'connected-react-router';
 import HotelSearch from '../pages/HotelSearch/HotelSearch';
+import { HOTEL_FORM, HOTEL_LIST_URL } from '../constants/links';
+import HotelList from '../pages/HotelList/HotelList';
+import { history } from '../store';
 
 const routing = (
-  <Router>
+  <ConnectedRouter history={history}>
     <Switch>
-      <Route exact path="/" component={HotelSearch} />
+      <Route exact path={HOTEL_FORM} component={withRouter(HotelSearch)} />
+      <Route exact path={HOTEL_LIST_URL} component={HotelList} />
     </Switch>
-  </Router>
+  </ConnectedRouter>
 );
 
 export default routing;
