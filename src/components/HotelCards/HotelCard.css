@@ -1,0 +1,84 @@
+.card-wrapper {
+  float: right;
+  margin-right: 50px;
+  width: 75%;
+  background-color: white;
+  margin-bottom: 10px;
+  margin-top: 5px;
+  border: 1px solid #e6e6e6;
+  box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14);
+}
+
+.image-wrapper img{
+  position: relative;
+  left: 1%;
+  height: 200px;
+  width: 100%;
+  border-radius: 8px;
+}
+
+.detail-wrapper {
+  padding-left: 10px;
+  padding-right: 5px;
+  width: 66.66666%;
+  float: left;
+  height: 200px;
+  padding-top: 15px;
+}
+
+.left-details{
+  float: left;
+  width: 65%;
+  height: 200px;
+}
+
+.right-details{
+  float: left;
+  width: 33.333%;
+  height: 200px;
+}
+
+.accormodationtypeWrap {
+  border-radius: 2px;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  border: solid 1px #e1e7ee;
+  background-color: #ffffff;
+  padding-top: 2px;
+  padding-bottom: 2px;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+.slotColor {
+  color: #647a97;
+}
+
+.hotel-name{
+  color: #2c67b3
+}
+
+.hotelRating.secondhigestRating {
+  background-color: #1ca54f;
+}
+.hotelRating {
+  border-radius: 4px;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  float: right;
+  padding: 5px;
+  font-size: 14px;
+  line-height: 1;
+  text-align: center;
+  color: #fff;
+}
+
+.vl {
+  border-left: 1px solid #e1e7ee;
+  height: 150px;
+  float: left;
+}
+
+body{
+  background-color: #f5f5f5 !important;
+}
