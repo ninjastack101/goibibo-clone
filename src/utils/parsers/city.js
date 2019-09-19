@@ -13,7 +13,6 @@ const cityParser = (contents) => {
     cityList.push(city);
   }
   return cityList;
-}
+};
 
 export default cityParser;
-

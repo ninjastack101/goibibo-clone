@@ -1,16 +1,25 @@
 import React from 'react';
-import './Tab.css'
+import PropTypes from 'prop-types';
+import './Tab.scss';
 
-const Tab = (props) => (
-  <div className='tab'>
-    <a href={props.link}>
-      <i className={props.iclassName}>
-      </i>
-      <span >
-        {props.label}
-      </span>
-    </a>
-  </div>
-);
+function Tab(props) {
+  const { label, iclassName, link } = props;
+  return (
+    <div className="tab">
+      <a href={link}>
+        <i className={iclassName} />
+        <span>
+          {label}
+        </span>
+      </a>
+    </div>
+  );
+}
+
+Tab.propTypes = {
+  link: PropTypes.string.isRequired,
+  iclassName: PropTypes.string.isRequired,
+  label: PropTypes.string.isRequired,
+};
 
 export default Tab;
