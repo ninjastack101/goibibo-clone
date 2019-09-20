@@ -9,6 +9,7 @@ import combineReducers from './reducers/index';
 import { PERSISTENT_STORE_KEY } from './constants/data';
 import fetchCityOnLoad from './sagas/onLoadSaga';
 import catchError from './sagas/errorSaga';
+import setHotel from './sagas/hotelSaga';
 
 const persistConfig = {
   key: PERSISTENT_STORE_KEY,
@@ -27,5 +28,6 @@ export const store = createStore(persistedReducer, applyMiddleware(
 
 sagaMiddleware.run(fetchCityOnLoad);
 sagaMiddleware.run(catchError);
+sagaMiddleware.run(setHotel);
 
 export const persistor = persistStore(store);
