@@ -1,8 +1,8 @@
 import React from 'react';
 import Tab from '../Tab/Tab';
-import './Navbar.scss';
-import { APP_LOGO, ROOT_URL, HOTEL_FORM } from '../../constants/links';
+import { APP_LOGO, ROOT_URL } from '../../constants/links';
 import { TAB_NAME } from '../../constants/data';
+import './Navbar.scss';
 
 function Navbar() {
   return (
@@ -13,7 +13,7 @@ function Navbar() {
       <div>
         <ul className="mainLinks">
           <Tab link={ROOT_URL} label={TAB_NAME.FLIGHT} iclassName="icon-flights db blue ico24 lh1-2 padT5 padB5" />
-          <Tab link={HOTEL_FORM} label={TAB_NAME.HOTEL} iclassName="icon-hotels db blue ico28 lh1-2 padT2 padB3" />
+          <Tab link={ROOT_URL} label={TAB_NAME.HOTEL} iclassName="icon-hotels db blue ico28 lh1-2 padT2 padB3" />
           <Tab link={ROOT_URL} label={TAB_NAME.BUS} iclassName="icon-bus db blue ico24 lh1-2 padT5 padB5" />
         </ul>
       </div>
