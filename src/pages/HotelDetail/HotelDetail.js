@@ -1,12 +1,12 @@
 import React from 'react';
 import Navbar from '../../components/Navbar/Navbar';
-import HorizontalSearchbar from '../../components/HorizontalSearchBar/HorizontalSearchBar';
+import HotelDetails from '../../components/HotelDetails/HotelDetails';
 
 function HotelDetail() {
   return (
     <div>
       <Navbar />
-      <HorizontalSearchbar />
+      <HotelDetails />
     </div>
   );
 }
