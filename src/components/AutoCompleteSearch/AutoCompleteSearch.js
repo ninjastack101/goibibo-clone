@@ -8,7 +8,7 @@ export default function AutoCompleteSearch(props) {
     selectedOption,
     handleChange,
     handleInputChange,
-    filteredOptions,
+    options,
   } = props;
 
   return (
@@ -16,7 +16,7 @@ export default function AutoCompleteSearch(props) {
       <Select
         className="city-search-input"
         value={selectedOption}
-        options={filteredOptions}
+        options={options}
         onChange={(option) => handleChange(option)}
         onInputChange={(input) => handleInputChange(input)}
       />
@@ -27,7 +27,7 @@ export default function AutoCompleteSearch(props) {
 AutoCompleteSearch.propTypes = {
   handleChange: PropTypes.func,
   handleInputChange: PropTypes.func,
-  filteredOptions: PropTypes.arrayOf(PropTypes.shape).isRequired,
+  options: PropTypes.arrayOf(PropTypes.shape).isRequired,
   selectedOption: PropTypes.string.isRequired,
 };
 
