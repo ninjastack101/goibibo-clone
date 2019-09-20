@@ -2,7 +2,7 @@ import { take, put, call } from 'redux-saga/effects';
 import { push } from 'connected-react-router';
 import { HOTEL_LIST_URL, HOTEL_BY_CITY } from '../constants/links';
 import { VALIDATE_SEARCH_DETAILS } from '../reducers/city';
-import { setHotelCriterias, setHotelList } from '../actions/hotel.actions';
+import { setHotelCriterias, setHotelList, clearHotelList } from '../actions/hotel.actions';
 import { setError } from '../actions/city.actions';
 import apiRequest from '../utils/Request';
 import hotelParser from '../utils/parsers/hotel';
@@ -22,6 +22,7 @@ async function fetchHotels(cityId) {
 export default function* catchError() {
   while (true) {
     const action = yield take(VALIDATE_SEARCH_DETAILS);
+    yield put(clearHotelList());
     const message = yield call(findErrors, action.data.selectedOption);
     if (message !== '') yield put(setError(message));
     else {
