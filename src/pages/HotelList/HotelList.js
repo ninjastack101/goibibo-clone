@@ -7,7 +7,6 @@ import { times } from 'lodash';
 import Navbar from '../../components/Navbar/Navbar';
 import HorizontalSearchbar from '../../components/HorizontalSearchBar/HorizontalSearchBar';
 import HotelCards from '../../components/HotelCards/HotelCards';
-import Filters from '../../components/Filters/Filters';
 import { DEFAULT_HOTEL_PROPS } from '../../constants/data';
 
 function HotelList(props) {
@@ -32,7 +31,6 @@ function HotelList(props) {
       <div className="fl width100 padTB10">
         <div className=" maxWidth1134 marginAuto width100" />
       </div>
-      <Filters />
       {
         renderHotelList()
       }
