@@ -6,22 +6,21 @@ import AutoCompleteSearch from '../AutoCompleteSearch/AutoCompleteSearch'
 import DatePicker from '../DatePicker/DatePicker'
 import GuestCountDropdown from '../GuestCountDropdown/GuestCountDropdown'
 import getCountProperty from '../../utils/utils'
-import { withRouter } from 'react-router-dom';
-
+import LocationError from '../Error/LocationError'
 class HotelForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
       selectedOption: {},
-      filteredOptions: [],
+      options: [],
       isVisible: false,
       count: {
         room: 1,
         adult: 1,
         children: 0
       },
-      checkInDate: new Date('2019-08-18T21:11:54'),
-      checkOutDate: new Date('2019-08-18T21:11:54')
+      checkInDate: new Date(),
+      checkOutDate: new Date()
     };
   }
 
@@ -38,10 +37,10 @@ class HotelForm extends Component {
   handleCityInputChange = (input) => {
     this.props.resetErrorMessage();
     if (input.length < 3)
-      this.setState({ filteredOptions: [] });
+      this.setState({ options: [] });
     else {
       this.setState({
-        filteredOptions: this.props.cityList.filter(
+        options: this.props.cityList.filter(
           options => options.label
             .toLowerCase()
             .includes(input.toLowerCase()))
@@ -95,7 +94,7 @@ class HotelForm extends Component {
   }
 
   render() {
-    const { selectedOption, filteredOptions, checkInDate, checkOutDate, count } = this.state;
+    const { selectedOption, options, checkInDate, checkOutDate, count } = this.state;
     const { errorMessage } = this.props;
     return (
       <div className="homeContainer col-md-12 col-sm-12 col-xs-12">
@@ -110,47 +109,44 @@ class HotelForm extends Component {
               <div className="shAutosgBox col-md-12 col-sm-11 col-xs-12 autoSuggestBox marginB10">
                 <AutoCompleteSearch
                   selectedOption={selectedOption}
-                  filteredOptions={filteredOptions}
+                  options={options}
                   handleChange={this.handleCityChange}
                   handleInputChange={this.handleCityInputChange}
                 />
                 <button className='clear-btn button orange' onClick={() => this.clearCityForm()}>Clear</button>
-
                 <div className="col-md-12 col-sm-12 col-xs-12 pad0">
                   <div className="width100 fl marginB10">
                     <span className="inputTxtLarge widgetCalenderTxt">
                       <DatePicker
+                        minDate={new Date()}
                         date={checkInDate}
                         handleDateChange={this.handleDateChange}
                         label={"Check-in"} />
                     </span>
                     <span className="inputTxtLarge widgetCalenderTxt">
                       <DatePicker
+                        minDate={this.state.checkInDate}
                         date={checkOutDate}
                         handleDateChange={this.handleDateChange}
                         label={"Check-Out"} />
                     </span>
                     <div className="guest-dropdown col-md-3 col-sm-3 col-xs-12">
-                      <span class="db ">Rooms:</span>
-                      <div class="guest-count" onClick={this.toggleIsVisible}>
-                        <i class="icon-user2 lh1-2 ico18 fl marginT2" />
-                        <span id="home_textHook" class="ico15 white padT5 padL5 fl">2 Guests / 1 Room</span>
-                        <i class="icon-arrow-down lh1-2 white ico12 marginT2 padT5 fr ipaddn" />
+                      <span className="db ">Rooms:</span>
+                      <div className="guest-count" onClick={this.toggleIsVisible}>
+                        <i className="icon-user2 lh1-2 ico18 fl marginT2" />
+                        <span id="home_textHook" className="ico15 white padT5 padL5 fl">2 Guests / 1 Room</span>
+                        <i className="icon-arrow-down lh1-2 white ico12 marginT2 padT5 fr ipaddn" />
                       </div>
                       {this.state.isVisible && <GuestCountDropdown count={count} getcount={this.getcount} toggleIsVisible={this.toggleIsVisible} />}
                     </div>
-                    <button onClick={this.handleSubmit} type="submit" class="city-form-button fr button orange xlarge">Get Set Go</button>
+                    <button onClick={this.handleSubmit} type="submit" className="city-form-button fr button orange xlarge">Get Set Go</button>
                   </div>
                 </div>
               </div>
             </div>
           </div >
-          {(errorMessage !== '') && <span class="alert_msg failure_msg fl">
-            <b class="status_info fl">ERROR: </b>
-            <span class="status_cont" id="homepageError_desc">
-              Please enter a valid location
-              </span>
-          </span>}
+          {(errorMessage !== '') &&
+            <LocationError />}
         </div>
       </div>
     );
@@ -164,7 +160,7 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default withRouter(connect(mapStateToProps, {
+export default (connect(mapStateToProps, {
   fetchCities,
   validateSearchDetails,
   resetErrorMessage
