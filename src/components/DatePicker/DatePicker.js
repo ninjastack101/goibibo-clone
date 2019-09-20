@@ -9,10 +9,13 @@ import PropTypes from 'prop-types';
 import './DatePicker.scss';
 
 export default function DatePicker(props) {
-  const { label, date, handleDateChange } = props;
+  const {
+    label, date, handleDateChange, minDate,
+  } = props;
   return (
     <MuiPickersUtilsProvider utils={DateFnsUtils}>
       <KeyboardDatePicker
+        minDate={minDate}
         disableToolbar
         variant="inline"
         format="MM/dd/yyyy"
@@ -30,6 +33,7 @@ export default function DatePicker(props) {
 }
 
 DatePicker.propTypes = {
+  minDate: PropTypes.objectOf(PropTypes.any).isRequired,
   date: PropTypes.objectOf(PropTypes.any).isRequired,
   label: PropTypes.string.isRequired,
   handleDateChange: PropTypes.func.isRequired,
