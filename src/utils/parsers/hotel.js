@@ -1,4 +1,5 @@
 import { DECIMAL_BASE } from '../../constants/data';
+import { flattenObject } from '../utils';
 
 const hotelParser = (contents) => {
   let hotels = [];
@@ -6,7 +7,9 @@ const hotelParser = (contents) => {
   hotels = hotelList.map((item) => {
     const hotel = {};
     const { hotel_data_node, hotel_geo_node } = item;
+
     hotel.id = hotel_data_node._id;
+    hotel.images = flattenObject(hotel_data_node.img_selected);
     hotel.image = hotel_data_node.img_selected.fs ? hotel_data_node.img_selected.fs.l : '';
     hotel.name = hotel_geo_node.name;
     hotel.location = hotel_data_node.loc.vendor_location;
